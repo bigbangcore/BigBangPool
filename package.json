@@ -6,14 +6,14 @@
     "Maintained by": "Musclesonvacation",
     "repository": {
         "type": "git",
-        "url": "https://github.com/muscleman/cryptonote-nodejs-pool.git"
+        "url": "https://github.com/bigbangcore/node-cryptonight-hashing.git"
     },
     "dependencies": {
         "async": "1",
         "base58-native": "*",
         "bignum": "*",
         "cli-color": "^2.0.0",
-        "cryptonight-hashing": "git+file:///home/chasibu/BigBang/node-cryptonight-hashing",
+        "cryptonight-hashing": "git://github.com/bigbangcore/node-cryptonight-hashing.git",
         "dateformat": "*",
         "mailgun.js": "*",
         "node-telegram-bot-api": "^0.40.0",
@@ -25,7 +25,7 @@
         "socket.io": "^2.1.1",
         "time-ago": "*"
     },
-    "cryptoforknote-util": "git+file:///home/chasibu/BigBang/PoolProject20191019/node-cryptoforknote-util",
+    "cryptoforknote-util": "#",
     "engines": {
         "node": ">=8.11.3"
     }
