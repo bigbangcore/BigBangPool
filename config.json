@@ -23,9 +23,9 @@
     "poolServer": {
         "enabled": true,
         "clusterForks": "auto",
-        "templateAddress": "20g05349ts660xbx99px7cksqj2awtb63perh6wz264439pkv67dyv8za",
-        "spentAddress": "14frms53fwwx4n32z6qxng7e2rws9jsj5swtspz65ntz84pbnvmf4q409",
-        "privkey": "12c28ac1e9732294f53dc1c8cadce40d7d61cbf1d9ec2183f3afbbe9623a9bb2",
+        "templateAddress": "20g0b143jm36krhpr1v97rzqg4wcegsjj4fqxdtbah4bq4j42g55h8bcp",
+        "spentAddress": "1ztsgg3m6az2sm8t6ap6k3cw36z5ewd5sp05k7a62h6rqvpqp871aqpq6",
+        "privkey": "b78e514c4199663b90b1315c577a501db44aeacbbfd06c32415822291ec8e9fb",
         "intAddressPrefix": 19,
         "blockRefreshInterval": 1000,
         "minerTimeout": 900,
@@ -40,17 +40,17 @@
             },
             {
                 "port": 4444,
-                "difficulty": 30,
+                "difficulty": 45,
                 "desc": "Mid range hardware"
             },
             {
                 "port": 5555,
-                "difficulty": 45,
+                "difficulty": 60,
                 "desc": "High end hardware"
             },
             {
                 "port": 7777,
-                "difficulty": 60,
+                "difficulty": 30,
                 "desc": "Cloud-mining / NiceHash"
             },
             {
@@ -121,7 +121,7 @@
         "depth": 30,
         "poolFee": 0.8,
         "devDonation": 0.2,
-        "devDonationAddr": "1n403j5amwf9ran5qrfmdr58zm2ztxywsbh6waqgjft9nrz554p1n783c",
+        "devDonationAddr": "1zbyhm9p0aa1wvebg3wch7xkhxsv5m9z32jsnjngpfnf7cgd778st8tds",
         "networkFee": 0.0,
         "fixBlockHeightRPC": false
     },
@@ -143,11 +143,11 @@
     },
     "daemon": {
         "host": "127.0.0.1",
-        "port": 9904
+        "port": 9902
     },
     "wallet": {
         "host": "127.0.0.1",
-        "port": 9904
+        "port": 9902
     },
     "redis": {
         "host": "127.0.0.1",
