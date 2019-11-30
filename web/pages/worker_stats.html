@@ -173,6 +173,7 @@ function fetchAddressStats(longpoll){
                 $('#minerAvgHR').hide();
             }
             updateText('yourHashes', (data.stats.hashes || 0).toString());
+            // TODO:show as float
             updateText('yourPaid', getReadableCoins(data.stats.paid));
             updateText('yourPendingBalance', getReadableCoins(data.stats.balance));
 
@@ -196,7 +197,8 @@ function fetchAddressStats(longpoll){
 
             let  payoutEstimate = Math.round(lastReward * (score_pct / 100));
             if (transferFee) payoutEstimate = payoutEstimate - transferFee;
-	    if (payoutEstimate < 0) payoutEstimate = 0;
+        if (payoutEstimate < 0) payoutEstimate = 0;
+        // TODO:show as float
 	    updateText('yourPayoutEstimate', getReadableCoins(payoutEstimate));
 	    
             renderPayments(data.payments);

@@ -149,7 +149,7 @@
 
         // Update global informations
         function updateIndex() {
-            updateText('coinSymbol', lastStats.config.symbol);
+            updateText('coinSymbol', lastStats.config.symbol.toUpperCase());
             updateText('g_networkHashrate', getReadableHashRateString(lastStats.network.netHashrate) + '/sec');
             updateText('g_poolHashrate', getReadableHashRateString(lastStats.pool.hashrate) + '/sec');
             if (lastStats.miner && lastStats.miner.hashrate) {
