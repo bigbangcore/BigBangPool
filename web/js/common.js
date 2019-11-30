@@ -222,7 +222,9 @@ function getCoinDecimalPlaces() {
 // Get readable coins
 function getReadableCoins(coins, digits, withoutSymbol) {
     let coinDecimalPlaces = getCoinDecimalPlaces();
-    let amount = parseFloat((parseInt(coins || 0) / lastStats.config.coinUnits).toFixed(digits || coinDecimalPlaces));
+    let amount;
+    amount = parseFloat(((coins || 0) / lastStats.config.coinUnits).toFixed(digits || coinDecimalPlaces));
+    
     return amount.toString() + (withoutSymbol ? '' : (' ' + lastStats.config.symbol));
 }
 
