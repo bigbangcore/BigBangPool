@@ -2,26 +2,10 @@
 <div class="row">
     <div class="col-sm-6">
         <h3><span data-tkey="connectionDetails">Connection Details</span></h3>
-        <div class="card padding-l-10 padding-r-10">
+        <div class="card padding-l-10 padding-r-10" style="height: 230px;">
             <div class="stats">
                 <div><i class="fa fa-cloud"></i> <span data-tkey="miningPoolHost">Mining Pool Address</span>: <span id="miningPoolHost"></span></div>
                 <div><i class="fa fa-cubes"></i> <span data-tkey="cnAlgorithm">Algorithm</span>: <span id="cnAlgorithm"></span></div>
-            </div>
-        </div>
-
-        <h4 class="push-up-15"><span data-tkey="username">Username<span></h4>
-        <div class="card padding-l-10 padding-r-10">
-            <div class="stats">
-                <div><i class="fa fa-key"></i> <span data-tkey="usernameDesc">This is your wallet address</span></div>
-                <div id="paymentId"><i class="fa fa-exchange"></i> <span data-tkey="paymentId">Exchange Payment ID</span>: <span><u data-tkey="address">address</u><span id="paymentIdSeparator">.</span><u data-tkey="addrPaymentId">paymentID</u></span></div>
-                <div id="fixedDiff"><i class="fa fa-wrench"></i> <span data-tkey="fixedDiff">Difficulty locking</span>: <span><u data-tkey="address">address</u><span id="fixedDiffSeparator">+</span><u data-tkey="addrDiff">diff</u></span></div>
-            </div>
-        </div>
-	    
-        <h4 class="push-up-15"><span data-tkey="password">Password</span></h4>
-        <div class="card padding-l-10 padding-r-10">
-            <div class="stats">
-                <div><i class="fa fa-server"></i> <span data-tkey="passwordDesc">This is your worker name</span></div>
             </div>
         </div>
     </div>
@@ -53,49 +37,6 @@
     
 </div>
 
-<!-- Mining Applications and Configuration Generator -->
-<h3><span data-tkey="miningApps">Mining Applications</span></h3>
-
-<!-- Configuration Generator -->
-<div class="card padding-15">
-    <p><span data-tkey="configGeneratorDesc">Generate your custom configuration to mine on our pool</span></p>
-    <div id="configGenerator" class="row">
-        <div class="col-md-12">
-            <div class="input-group push-down-5">
-                <span class="input-group-addon"><i class="fa fa-link"></i></span>
-                <select class="form-control" id="gMiningPort"></select>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <div class="input-group push-down-5">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input class="form-control" id="gAddress" type="text" data-tplaceholder="addressField" placeholder="Wallet Address" required="required" />
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <div class="input-group push-down-5">
-                <span class="input-group-addon"><i class="fa fa-exchange"></i></span>
-                <input class="form-control" id="gPaymentID" type="text" data-tplaceholder="paymentIdField" placeholder="Payment ID for exchanges (optional)" />
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <div class="input-group push-down-5">
-                <span class="input-group-addon"><i class="fa fa-server"></i></span>
-                <input class="form-control" id="gWorkerName" data-tplaceholder="workerNameField" type="text" placeholder="Worker_Name" /> 
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <div class="input-group push-down-5">
-                <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
-                <input class="form-control" id="gDifficulty" type="text" data-tplaceholder="fixedDiffField" placeholder="Fixed difficulty (optional)" />
-            </div>
-        </div>
-        <div class="col-md-12 push-up-5">
-            <input id="generateConf" type="submit" data-tvalue="generateConfig" value="Generate configuration" class="btn btn-default"  data-toggle="collapse" href="#xmrstak" />
-        </div>
-    </div>
-</div>
-
 <!-- Mining Applications -->
 <div class="card push-up-5">
     <div id="miningApps" class="table-responsive">
@@ -106,21 +47,19 @@
                 <th><i class="fa fa-car"></i> <span data-tkey="appArch">Architecture</span></th>
                 <th><i class="fa fa-star"></i> <span data-tkey="appDesc">Features</span></th>
                 <th><i class="fa fa-download"></i> <span data-tkey="download">Download</span></th>
-                <th><i class="fa fa-file-code-o"></i> <span data-tkey="configuration">Configuration</span></th>
             </tr>
             </thead>
             <tbody id="miningApps_rows">	    
 	    <!-- XMRig -->
             <tr class="appInfo">
-                <td class="miningAppTitle">BBC</td>
+                <td class="miningAppTitle">BBC miner</td>
                 <td>CPU</td>
                 <td>Lightweight but powerful CPU Mining App</td>
-                <td><a class="btn btn-success" target="_blank" href="https://github.com/bigbangcore/BigBang/releases"><span data-tkey="download">Download</span></a></td>
-                <td><a class="btn btn-default" role="button" data-toggle="collapse" href="#xmrig" aria-expanded="true" aria-controls="collapseExample"><span data-tkey="showConfig">See more</span></a></td>
+                <td><a class="btn btn-success" target="_blank" href="https://github.com/bigbangcore/miner/releases"><span data-tkey="download">Download</span></a></td>
             </tr>
             <tr class="appConfig">
-                <td colspan="5">
-                    <div class="collapse" id="xmrig">
+                <td colspan="4">
+                    <div class="collapse" id="xmrig" style="display: block !important;">
 		
 <pre><code>
         {
@@ -139,10 +78,8 @@
             "pools": [
                 {
                     "algo": "cn/bbc",
-                    "url1": "18.139.37.48:3333",
-                    "url11": "106.14.238.184:12812",
-                    "url": "127.0.0.1:3333",
-                    "user": "1jtacnnqtrmm6g7n0tphyjrqp0rkapvr49m2qwhx8kt6x8c83mh2c19ds",
+                    "url": "bbc02.bbcpool.io:3333",
+                    "user": "1dtxf4e89n52eyttgnwhrjwgesez3edk8k9gfcjfq94yas0qb4j67vqz7",
                     "pass": "x",
                     "rig-id": "chasanbu",
                     "nicehash": true,
