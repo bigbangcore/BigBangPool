@@ -236,8 +236,8 @@ function getFixed (number, fractionDigits) {
 }
 
 // Format payment link
-function formatPaymentLink(hash) {
-    return '<a target="_blank" href="' + getTransactionUrl(hash) + '">' + hash + '</a>';
+function formatPaymentLink(explorHost,hash) {
+    return '<a target="_blank" href="' + getTransactionUrl(explorHost,hash) + '">' + hash + '</a>';
 }
 
 // Format difficulty
@@ -274,13 +274,15 @@ function getPoolHost() {
 }
 
 // Return transaction URL
-function getTransactionUrl(id) {
-    return transactionExplorer.replace(new RegExp('{symbol}', 'g'), lastStats.config.symbol.toLowerCase()).replace(new RegExp('{id}', 'g'), id);
+function getTransactionUrl(explorHost,id) {
+    return (explorHost + '/transaction-detail/' + id);
+    //return transactionExplorer.replace(new RegExp('{symbol}', 'g'), lastStats.config.symbol.toLowerCase()).replace(new RegExp('{id}', 'g'), id);
 }
 
 // Return blockchain explorer URL
-function getBlockchainUrl(id) {
-    return blockchainExplorer.replace(new RegExp('{symbol}', 'g'), lastStats.config.symbol.toLowerCase()).replace(new RegExp('{id}', 'g'), id);
+function getBlockchainUrl(explorHost,id) {
+    return (explorHost + '/block-detail/' + id);
+    //return blockchainExplorer.replace(new RegExp('{symbol}', 'g'), lastStats.config.symbol.toLowerCase()).replace(new RegExp('{id}', 'g'), id);
 }
 
 /**

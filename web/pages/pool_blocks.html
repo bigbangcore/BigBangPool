@@ -229,7 +229,7 @@
     // Get block row element
     function getBlockRowElement(block, jsonString) {
         function formatBlockLink(hash) {
-            return '<a target="_blank" href="' + getBlockchainUrl(hash) + '">' + hash + '</a>';
+            return '<a target="_blank" href="' + getBlockchainUrl(explorHost,hash) + '">' + hash + '</a>';
         }
 
         let blockStatusClasses = {

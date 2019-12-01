@@ -188,7 +188,9 @@ function fetchAddressStats(longpoll){
 	        let  transferFee = lastStats.config.transferFee;
 	    
             let  share_pct = userRoundHashes * 100 / poolRoundHashes;
+            share_pct = share_pct >= 100 ? 100 : share_pct;
             let  score_pct = userRoundScore * 100 / poolRoundScore;
+            score_pct = score_pct >= 100 ? 100 : score_pct;
             updateText('yourRoundShareProportion', Math.round(share_pct * 1000) / 1000);
             updateText('yourRoundScoreProportion', Math.round(score_pct * 1000) / 1000);
             if (!lastStats.config.slushMiningEnabled) {
@@ -508,7 +510,7 @@ function getPaymentRowElement(payment, jsonString){
 // Get payment cells
 function getPaymentCells(payment){
     return '<td class="col1">' + formatDate(payment.time) + '</td>' +
-           '<td class="col2">' + formatPaymentLink(payment.hash) + '</td>' +
+           '<td class="col2">' + formatPaymentLink(explorHost,payment.hash) + '</td>' +
            '<td class="col3">' + getReadableCoins(payment.amount) + '</td>';
            //'<td class="col4">' + payment.mixin + '</td>';
 }
@@ -550,7 +552,7 @@ function renderPayments(paymentsResults){
         if (!lastPaymentDate || lastPaymentDate && paymentDate != lastPaymentDate) {
             summaryData = { date: paymentDate, time: payment.time, count: 0, amount: 0 };
         }
-
+        
         let  existingRow = document.getElementById('paymentRow' + payment.time);
         if (existingRow && existingRow.getAttribute('data-json') !== paymentJson){
             $(existingRow).replaceWith(getPaymentRowElement(payment, paymentJson));
