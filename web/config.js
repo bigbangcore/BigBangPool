@@ -1,6 +1,15 @@
-var api = "http://127.0.0.1:8117";
+var api = "";
 //var api = "http://18.139.37.48:8117";
 var explorHost = "http://www.bbcexplorer.com";
+
+//获取页面完整地址
+var url = window.location.href;
+if(url.lastIndexOf('/') > 8){
+    api = url.substring(0,url.lastIndexOf('/')) + ":8117";
+}
+else{
+    api = '';
+}
 
 var email = "";
 var telegram = "";
