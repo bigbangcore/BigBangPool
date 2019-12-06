@@ -356,7 +356,7 @@ Explanation for each field:
         "enabled": true,
         "min": 20, // Minimum percent probability for share hashing,共享哈希的最小概率
         "stepDown": 3, // Increase trust probability % this much with each valid share
-        "threshold": 60, // Amount of valid shares required before trusting begins
+        "threshold": 60, // Amount of valid shares required before trusting begins,开始信任前所需的有效股份数量
         "penalty": 180 // Upon breaking trust require this many valid share before trusting
     },
 
