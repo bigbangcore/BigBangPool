@@ -142,8 +142,8 @@ currentPage = {
             updateTextClasses('examplePort', lastStats.config.ports[0].port.toString());
         }
 
-        updateText('miningPoolHost', getPoolHost());
-        updateTextClasses('exampleHost', getPoolHost());
+        updateText('miningPoolHost', getPoolHost(explorHost));
+        updateTextClasses('exampleHost', getPoolHost(explorHost));
         updateText('paymentIdSeparator', lastStats.config.paymentIdSeparator);
         updateText('fixedDiffSeparator', lastStats.config.fixedDiffSeparator);
         if (!lastStats.config.fixedDiffEnabled) $('#fixedDiff').hide();

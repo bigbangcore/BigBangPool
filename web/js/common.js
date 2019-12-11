@@ -267,10 +267,8 @@ function formatLuck(difficulty, shares) {
  **/
 
 // Return pool host
-function getPoolHost() {
-    if (typeof poolHost != "undefined") return poolHost;
-    if (lastStats.config.poolHost) return lastStats.config.poolHost;
-    else return window.location.hostname;
+function getPoolHost(explorHost) {
+    return explorHost;
 }
 
 // Return transaction URL
