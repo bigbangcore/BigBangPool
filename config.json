@@ -26,16 +26,18 @@
         "templateAddress": "20g05349ts660xbx99px7cksqj2awtb63perh6wz264439pkv67dyv8za",
         "spentAddress": "14frms53fwwx4n32z6qxng7e2rws9jsj5swtspz65ntz84pbnvmf4q409",
         "privkey": "12c28ac1e9732294f53dc1c8cadce40d7d61cbf1d9ec2183f3afbbe9623a9bb2",
+        "spentPWD":"baotazhenheyao",
+        "unlockTimeout":30,
         "intAddressPrefix": 19,
         "blockRefreshInterval": 1000,
-        "minerTimeout": 900,
+        "minerTimeout": 90,
         "sslCert": "./cert.crt",
         "sslKey": "./privkey.key",
         "sslCA": "./chain.crt",
         "ports": [
             {
                 "port": 3333,
-                "difficulty": 10,
+                "difficulty": 12,
                 "desc": "Low end hardware"
             },
             {
@@ -50,7 +52,7 @@
             },
             {
                 "port": 7777,
-                "difficulty": 30,
+                "difficulty": 23,
                 "desc": "Cloud-mining / NiceHash"
             },
             {
@@ -89,7 +91,7 @@
             "penalty": 180
         },
         "banning": {
-            "enabled": false,
+            "enabled": true,
             "time": 600,
             "invalidPercent": 25,
             "checkThreshold": 30
@@ -143,11 +145,11 @@
     },
     "daemon": {
         "host": "127.0.0.1",
-        "port": 9902
+        "port": 9904
     },
     "wallet": {
         "host": "127.0.0.1",
-        "port": 9902
+        "port": 9904
     },
     "redis": {
         "host": "127.0.0.1",
@@ -190,14 +192,14 @@
     },
     "email": {
         "enabled": false,
-        "fromAddress": "your@email.com",
+        "fromAddress": "xxx@163.com",
         "transport": "sendmail",
         "sendmail": {
             "path": "/usr/sbin/sendmail"
         },
         "smtp": {
-            "host": "smtp.example.com",
-            "port": 587,
+            "host": "smtp.163.com",
+            "port": 465,
             "secure": false,
             "auth": {
                 "user": "username",
