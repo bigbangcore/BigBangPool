@@ -25,9 +25,10 @@
         "clusterForks": "auto",
         "templateAddress": "20g05349ts660xbx99px7cksqj2awtb63perh6wz264439pkv67dyv8za",
         "spentAddress": "14frms53fwwx4n32z6qxng7e2rws9jsj5swtspz65ntz84pbnvmf4q409",
+        "spentPubkey": "1edd755982beaec57c9b35cf45669932c7c21d58fb355f8c4a3ae76f944cf123",
         "privkey": "12c28ac1e9732294f53dc1c8cadce40d7d61cbf1d9ec2183f3afbbe9623a9bb2",
         "spentPWD":"baotazhenheyao",
-        "unlockTimeout":30,
+        "unlockTimeout":60,
         "intAddressPrefix": 19,
         "blockRefreshInterval": 1000,
         "minerTimeout": 90,
@@ -115,7 +116,8 @@
         "minPayment": 1,
         "maxPayment": null,
         "maxTransactionAmount": 1000000,
-        "denomination": 500
+        "denomination": 500,
+        "ScheduleTime":"10:0:0"
     },
     "blockUnlocker": {
         "enabled": true,
@@ -135,7 +137,7 @@
         "port": 8117,
         "blocks": 30,
         "payments": 30,
-        "password": "",
+        "password": "tianwanggaidihu",
         "ssl": true,
         "sslPort": 8119,
         "sslCert": "./cert.crt",

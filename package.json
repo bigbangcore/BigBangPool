@@ -16,6 +16,7 @@
         "cryptonight-hashing": "git://github.com/bigbangcore/node-cryptonight-hashing.git",
         "dateformat": "*",
         "mailgun.js": "*",
+        "node-schedule": "^1.3.2",
         "node-telegram-bot-api": "^0.40.0",
         "nodemailer": "2.7.2",
         "nodemailer-sendmail-transport": "*",
