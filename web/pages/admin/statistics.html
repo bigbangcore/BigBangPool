@@ -101,8 +101,8 @@
                 <span class="fa fa-line-chart"></span>
             </div>
             <div class="content">
-                <div class="text">Average Luck (shares/diff)</div>
-                <div class="value"><span id="averageLuck">...</span></div>
+                <div class="text">Average Get (totalMined / totalWorkers)</div>
+                <div class="value"><span id="averageGet">...</span></div>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
 <!-- Javascript -->
 <script>
 function formatLuck(difficulty, shares) {
-    let  percent = Math.round(shares / difficulty * 100);
+    let  percent = Math.round(shares / difficulty);
     if(!percent){
         return '<span class="luckGood">?</span>';
     }
@@ -138,7 +138,7 @@ function getStats(promptPassword) {
     $.ajax({
         url: api + '/admin_stats',
         data: {password: password},
-	dataType: 'json',
+	    dataType: 'json',
         cache: 'false',
         success: function(data) {
             docCookies.setItem('password', password, Infinity);
@@ -158,7 +158,13 @@ function renderData(data) {
     $('#totalMined').text(getReadableCoins(data.totalRevenue));
     $('#profit').text(getReadableCoins(data.totalRevenue - data.totalOwed - data.totalPaid));
     $('#blocksUnlocked').text(data.blocksUnlocked);
-    $('#averageLuck').html(formatLuck(data.totalDiff, data.totalShares));
+    //$('#averageLuck').html(formatLuck(data.totalWorkers, Math.log2(data.totalShares)));
+    if (data.totalWorkers > 0){
+        $('#averageGet').text((data.totalRevenue / data.totalWorkers).toFixed(0));
+    }else{
+        $('#averageGet').text(0);
+    }
+    
     $('#blocksOrphaned').text(data.blocksOrphaned);
     $('#orphanPercent').text((data.blocksOrphaned / data.blocksUnlocked * 100).toFixed(2) + '%');
     $('#registeredAddresses').text(data.totalWorkers);

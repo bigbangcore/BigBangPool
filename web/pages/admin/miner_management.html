@@ -1,0 +1,329 @@
+<style type="text/css">
+    .form-control {
+        height: auto !important;
+        padding: 10px 12px;
+        border-radius: 0%;
+    }
+    .btn {
+        border-radius: 0 !important;
+        width: 20rem;
+    }
+    .table-responsive td,.table-responsive th{
+        text-align: left !important;
+    }
+</style>
+<div>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Add Miner</a></li>
+    <li role="presentation" id="showLst"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Miners List</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="home">
+    <div style="clear: both; height: 1.5rem;"></div>
+    <form class="form-horizontal" id="setAllow">
+        <div class="form-group">
+            <label for="input_Name" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Name" placeholder="姓名/Name">
+            </div>
+            <label for="input_Nationality" class="col-sm-1 control-label">Nationality</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Nationality" placeholder="国籍/Nationality">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input_Pool" class="col-sm-1 control-label">Pool</label>
+            <div class="col-sm-5">
+                <select class="form-control input-lg" id="input_Pool">
+                    <option value="0">--选择申请矿池--</option>
+                    <option value="bbc01" selected>bbc01</option>
+                    <option value="bbc02">bbc02</option>
+                </select>
+            </div>
+            <label for="input_Address" class="col-sm-1 control-label">address</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Address" placeholder="BBC钱包地址/BBC wallet address">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input_CPU" class="col-sm-1 control-label">CPUModel</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_CPU" placeholder="挖矿设备(CPU型号)/Mining machine (CPU model)">
+            </div>
+            <label for="input_Hashrate" class="col-sm-1 control-label">Hashrate</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Hashrate" placeholder="设备算力(单位为H/S，每秒hash数)/Equipment computing power">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input_Amount" class="col-sm-1 control-label">Amount</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Amount" placeholder="设备数量/Amount of equipment">
+            </div>
+            <label for="input_Email" class="col-sm-1 control-label">Email</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Email" placeholder="联系邮箱/Contact email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input_WeChat" class="col-sm-1 control-label">WeChat</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_WeChat" placeholder="微信号/WeChat number">
+            </div>
+            <label for="input_Submitter" class="col-sm-1 control-label">Submitter</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_Submitter" placeholder="提交人">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input_System" class="col-sm-1 control-label">System</label>
+            <div class="col-sm-5">
+            <select class="form-control input-lg" id="input_System">
+                    <option value="0">--选择操作系统--</option>
+                    <option value="Linux" selected>Linux</option>
+                    <option value="Windows">Windows</option>                    
+                    <option value="Mac">Mac</option>
+                </select>
+            </div>
+            <label for="input_IP" class="col-sm-1 control-label">IP <Address></Address></label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" id="input_IP" placeholder="IP" value="127.0.0.1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-lable"></label>
+            <div class="col-sm-5">
+                <button type="button" class="btn btn-success btn-lg" id="minerSetButton"> Submit </button>
+                <button type="button" class="btn btn-default btn-lg" id="minerClearButton"> Clear </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div role="tabpanel" class="tab-pane" id="profile">
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped usersList">
+            <thead>
+            <tr>
+                <th class="col5">Name</th>
+                <th class="col5">Pool <i class="fa"></i></th>
+                <th class="col1">Wallet Address <i class="fa"></i></th>
+                <th class="col5 sort">Hashrate <i class="fa fa-sort"></i></th>
+                <th class="col5 sort">Miner Count <i class="fa fa-sort"></i></th>
+            </tr>            
+            </thead>
+            <tbody id="template">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+
+$('#showLst').on('click',function(){
+    $('#loading').show();
+    $.ajax({
+        url: api + '/get_allow_lst',
+        data: {poolName: 'bbc01'},
+	    dataType: 'json',
+        cache: 'false',
+        success: function(data) {
+            $('#loading').hide();
+            let rows = '';
+            $('#template').html('');
+            data.forEach(element => {
+                rows += "<tr>";
+                rows += '<td class="col5">' + element.input_Name + '</td>';
+                rows += '<td class="col5">' + element.input_Pool + '</td>';
+                rows += '<td class="col1">' + element.input_Address + '</td>';
+                rows += '<td class="col5 sort">' + element.input_Hashrate + '</td>';
+                rows += '<td class="col5 sort">' + element.input_Amount + '</td>';
+                rows += "</tr>";
+            });
+            $('#template').html(rows);
+        },
+        error: function(e) {
+            $('#template').html('');
+        }
+    });
+});
+
+function uid() {
+    let min = 100000000000000;
+    let max = 999999999999999;
+    let id = Math.floor(Math.random() * (max - min + 1)) + min;
+    return id.toString();
+};
+
+// Handle click on Set button
+$('#minerSetButton').click(function(){
+    let  input_Name = $('#input_Name').val().trim();
+    if (!input_Name || input_Name == '') {
+        showError('noMinerName', 'No miner Name');
+        return;
+    }
+
+    let  input_Nationality = $('#input_Nationality').val().trim();
+    if (!input_Nationality || input_Nationality == '') {
+        showError('noMinerNationality', 'No miner Nationality');
+        return;
+    }
+
+    let  input_Pool = $('#input_Pool').val().trim();
+    if (!input_Pool || input_Pool == 0) {
+        showError('noMinerPool', 'Please Choose a Pool');
+        return;
+    }
+
+    let  input_Address = $('#input_Address').val().trim();
+    if (!input_Address || input_Address == '') {
+        showError('noMinerAddress', 'No miner address specified');
+        return;
+    }
+
+    let  input_CPU = $('#input_CPU').val().trim();
+    if (!input_CPU || input_CPU == '') {
+        showError('noMinerCPU', 'No miner CPU Type');
+        return;
+    }
+
+    let  input_Hashrate = $('#input_Hashrate').val().trim();
+    if (!input_Hashrate || input_Hashrate == '') {
+        showError('noMinerHashrate', 'No miner Hashrate');
+        return;
+    }
+
+    let  input_Amount = $('#input_Amount').val().trim();
+    if (!input_Amount || input_Amount == '') {
+        showError('noMinerAmount', 'No miner amount');
+        return;
+    }
+
+    let  input_Email = $('#input_Email').val().trim();
+    if (!input_Email || input_Email == '') {
+        showError('noMinerEmail', 'No miner email');
+        return;
+    }
+
+    let  input_WeChat = $('#input_WeChat').val().trim();
+    if (!input_WeChat || input_WeChat == '') {
+        showError('noMinerWeChat', 'No miner wechat');
+        return;
+    }
+
+    //input_SubmitTime
+
+    let  input_Submitter = $('#input_Submitter').val().trim();
+    if (!input_Submitter || input_Submitter == '') {
+        showError('noMinerSubmitter', 'No submitter');
+        return;
+    }
+
+    let  input_System = $('#input_System').val().trim();
+    if (!input_System || input_System == 0) {
+        showError('noMinerSystem', 'No system type');
+        return;
+    }
+
+    let  input_IP = $('#input_IP').val().trim();
+    if (!input_IP || input_IP == '') {
+        showError('noMinerIP', 'No IP');
+        return;
+    }
+
+    //input_SubmitTime
+    //input_ModifyTime
+    let input_SubmitTime = Date.now() / 1000 | 0;
+    let input_ModifyTime = Date.now() / 1000 | 0;
+    let arr = {
+        uid: uid(),
+        input_Address: input_Address,
+        input_Amount: input_Amount,
+
+        input_CPU: input_CPU,
+        input_Email: input_Email,
+
+        input_Hashrate: input_Hashrate,
+        input_IP: input_IP,
+
+        input_ModifyTime: input_ModifyTime,
+        input_Name: input_Name,
+
+        input_Nationality: input_Nationality,
+        input_Pool: input_Pool,
+
+        input_SubmitTime: input_SubmitTime,
+        input_Submitter: input_Submitter,
+
+        input_System: input_System,
+        input_WeChat: input_WeChat
+        };
+
+    setAllowMiner(arr);
+});
+
+function setAllowMiner(arr) {
+    $.ajax({
+        url: api + '/set_allow_miner',
+        data: arr,
+        dataType: 'json',
+        type:'POST',
+        cache: 'false'
+    }).done(function(data){
+        if (data.result == 'SUCCESSFUL') {
+            alert('SET SUCCESSFUL!');
+            document.getElementById("setAllow").reset();
+        } else {
+            alert('SET ERROR!');
+        }
+    });
+}
+
+$('#minerClearButton').click(function(){
+    document.getElementById("setAllow").reset();
+});
+
+/**
+ * Error Message
+ **/
+ function showError(id, message, extra) {
+    if (getTranslation(id)) message = getTranslation(id);
+    message = message.trim();
+    if (extra) message += ' ' + extra;
+    $('#action_update_message').text(message);
+    $('#action_update_message').removeClass().addClass('alert alert-danger');
+}
+
+/**
+ * Success Message
+ **/
+function showSuccess(id, message) {
+    if (getTranslation(id)) message = getTranslation(id);
+    $('#action_update_message').text(message);
+    $('#action_update_message').removeClass().addClass('alert alert-success');
+}
+
+/**
+ * Email Notifications
+ **/
+
+// Check if specified value is a valid email
+function isEmail(email) {
+    let  regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
+</script>
