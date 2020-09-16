@@ -190,7 +190,7 @@ cd pool
 "cryptonight-hashing": "git+file:///home/chasibu/BigBang/node-cryptonight-hashing",  
 
 然后：  
-npm update
+npm update --registry=https://registry.npm.taobao.org
 ```
 
 #### 2) Configuration
